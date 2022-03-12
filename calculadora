@@ -1,0 +1,23 @@
+#  calculadora vue
+README.md
+#  Configuração do projeto
+```
+npm instalar
+```
+
+###  Compila e recarrega a quente para desenvolvimento
+```
+npm executar servir
+```
+
+###  Compila e minifica para produção
+```
+npm executar compilação
+```
+
+###  Desfia e corrige arquivos
+```
+npm executar lint
+```
+
+###  Personalizar configuração
