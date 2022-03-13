@@ -1,0 +1,83 @@
+modelo >
+  <!-- Boa codificação -->
+  < div  class = " p-3 "  style = " max-width: 400px; margin: 50px auto; background: #234 " >
+
+    <!-- Resultado da Calculadora -->
+    < div  class = " w-full arredondado m-1 p-3 text-right lead font-weight-bold text-white bg-vue-dark " >
+      {{calculadoraValor ||  0 }}
+    </ div >
+
+    <!-- Botões da calculadora -->
+    < div  class = " linha sem calhas " >
+      < div  class = " col-3 "  v-for = " n in calculatorElements " : key = " n " >
+        < div  class = " lead text-white text-center m-1 py-3 bg-vue-dark round hover-class "
+          : class = " { ' bg-vue-green ' : [ ' C ' , ' * ' , ' / ' , ' - ' , ' + ' , ' % ' , ' = ' ]. inclui (n)} "
+          @clique = " ação ( n) "
+        >
+          {{n}}
+        </ div >
+      </ div >
+    </ div >
+
+  </ div >
+</ modelo >
+
+< roteiro >
+exportação  padrão {
+  nome :  ' Calculadora ' ,
+  adereços : {
+    msg :  String
+  },
+  dados () {
+    retornar {
+      calculadoraValue :  ' ' ,
+      Elementos da calculadora : [ ' C ' , ' * ' , ' / ' , ' - ' , 7 , 8 , 9 , ' + ' , 4 , 5 , 6 , ' % ' , 1 , 2 , 3 , ' = ' , 0 , ' . ' ],
+      operador :  null ,
+      valorCalculadora anterior :  ' ' ,
+    }
+  },
+  métodos : {
+    ação ( n ){
+      /* Valor acrescentado */
+      if ( ! isNaN (n) || n ===  ' . ' ){
+        isso . calculadoraValue  += n +  ' ' ;
+      }
+      /* Limpar valor */
+      if (n ===  ' C ' ){
+        isso . calculadoraValue  =  ' ' ;
+      }
+      /* Porcentagem */
+      if (n ===  ' % ' ){
+        isso . calculadoraValue  =  this . calculadoraValue  /  100  +  ' ' ;
+      }
+      /* Operadores */
+      if ([ ' / ' , ' * ' , ' - ' , ' + ' ]. inclui (n)){
+        isso . operador  = n;
+        isso . valorCalculadora anterior  =  this . calculadoraValor ;
+        isso . calculadoraValue  =  ' ' ;
+      }
+      /* Calcula o resultado usando a função eval */
+      if (n ===  ' = ' ){
+        isso . calculadoraValue  =  eval (
+          isso . anteriorCalculatorValue  +  this . operador  +  este . calculadoraValor
+        );
+        isso . valorCalculadora anterior  =  ' ' ;
+        isso . operador  =  null ;
+      }
+    }
+  }
+}
+</ script >
+
+
+< estilo de  escopo >
+  .bg-vue-dark {
+    fundo : #31475e ;
+  }
+  .hover-class :hover {
+    cursor : ponteiro ;
+    fundo : #3D5875 ;
+  }
+  .bg-vue-verde {
+    fundo : #3fb984 ;
+  }
